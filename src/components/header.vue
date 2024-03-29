@@ -1,8 +1,11 @@
 <script setup>
-import {RouterLink} from 'vue-router'
-import {useStore} from 'vuex'
+import { RouterLink } from 'vue-router'
+import { useStore } from 'vuex'
+import { computed } from 'vue' // Importez 'computed' de 'vue'
 
 const store = useStore()
+
+const user = computed(() => store.state.user) // Ajoutez cette ligne
 
 const logout = () => {
   store.commit('setLoggedIn', false)
@@ -10,42 +13,47 @@ const logout = () => {
 }
 </script>
 
-
 <template>
-    <div class="container-fluid" style="margin-top: 70px;"> <!-- Remplacez 'container' par 'container-fluid' -->
-      <header class="header">
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-          <div class="container-fluid">
-            <RouterLink class="navbar-brand" to="/">Home</RouterLink>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                  <RouterLink class="nav-link" v-if="!store.state.isLoggedIn" to="/login">Login</RouterLink>
-                  <button class="btn btn-primary" v-else @click="logout">Logoff</button>
-                </li>
-                <li class="nav-item">
-                  <RouterLink class="nav-link" v-if="!store.state.isLoggedIn" to="/register">Register</RouterLink>
-                </li>
-                <li class="nav-item">
-                  <RouterLink class="nav-link" to="/cart">Cart</RouterLink>
-                </li>
-              </ul>
-              <form class="d-flex search-bar" role="search">
-                <input class="form-control me-2 search-input" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success search-button" type="submit">Search</button>
-              </form>
-            </div>
+  <div class="container-fluid" style="margin-top: 70px;">
+    <header class="header">
+      <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <RouterLink class="navbar-brand" to="/">Home</RouterLink>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <RouterLink class="nav-link" v-if="!store.state.isLoggedIn" to="/login">Login</RouterLink>
+                <button class="btn btn-primary" v-else @click="logout">Logoff</button>
+              </li>
+              <li class="nav-item">
+                <RouterLink class="nav-link" v-if="!store.state.isLoggedIn" to="/register">Register</RouterLink>
+              </li>
+              <li class="nav-item">
+                <RouterLink class="nav-link" to="/cart">Cart</RouterLink>
+              </li>
+              <div v-if="user" class="navbar-text"> <!-- Remplacez 'store.state.isLoggedIn' par 'user' -->
+                Bonjour, {{ user.username }}
+              </div>
+              <div v-else class="navbar-text">
+                <!-- Ajoutez ce bloc pour afficher un message si l'utilisateur n'est pas connecté -->
+                Vous n'êtes pas connecté
+              </div>
+            </ul>
+            <form class="d-flex search-bar" role="search">
+              <input class="form-control me-2 search-input" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success search-button" type="submit">Search</button>
+            </form>
           </div>
-        </nav>
-      </header>
-    </div>
-  </template>
-
-
+        </div>
+      </nav>
+    </header>
+  </div>
+</template>
 
 <style scoped>
 .search-bar {
