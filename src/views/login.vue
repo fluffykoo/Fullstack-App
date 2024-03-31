@@ -29,7 +29,7 @@ const isSuccess = ref(false)
 
 const login = async () => {
   try {
-    const response = await axios.post(' https://3334-209-206-8-34.ngrok-free.app/login', {
+    const response = await axios.post(' http://localhost:3000/login', {
       username: username.value,
       password: password.value
     })
@@ -37,6 +37,7 @@ const login = async () => {
       message.value = response.data.message
       isSuccess.value = response.data.message === 'Logged in successfully'
       store.commit('setLoggedIn', true)
+      store.commit('setUser', response.data.user)
     }
   } catch (err) {
     message.value = 'Invalid credentials'

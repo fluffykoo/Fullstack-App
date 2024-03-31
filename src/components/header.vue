@@ -1,11 +1,11 @@
 <script setup>
 import { RouterLink } from 'vue-router'
 import { useStore } from 'vuex'
-import { computed } from 'vue' // Importez 'computed' de 'vue'
+import { computed } from 'vue' 
 
 const store = useStore()
 
-const user = computed(() => store.state.user) // Ajoutez cette ligne
+const user = computed(() => store.state.user) 
 
 const logout = () => {
   store.commit('setLoggedIn', false)
@@ -36,11 +36,11 @@ const logout = () => {
               <li class="nav-item">
                 <RouterLink class="nav-link" to="/cart">Cart</RouterLink>
               </li>
-              <div v-if="user" class="navbar-text"> <!-- Remplacez 'store.state.isLoggedIn' par 'user' -->
-                Bonjour, {{ user.username }}
+              <div v-if="user" class="navbar-text">
+                Bonjour, {{ user.username }} 
               </div>
               <div v-else class="navbar-text">
-                <!-- Ajoutez ce bloc pour afficher un message si l'utilisateur n'est pas connecté -->
+
                 Vous n'êtes pas connecté
               </div>
             </ul>

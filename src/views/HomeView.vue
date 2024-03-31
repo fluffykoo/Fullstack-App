@@ -16,35 +16,16 @@
             <p class="card-text">{{ listing.description }}</p>
           </div>
           <div class="card-footer">
-            <small class="text-muted">Last updated: 3 minutes ago</small>
-            <button @click="openModal(listing)" class="btn btn-primary">Add to cart</button>
+            <small class="text-muted">Last updated : 3 minutes ago</small>
+            <button @click="addToCart(listing)" class="btn btn-primary">Add to cart</button>
           </div>
         </div>
       </div>
     </div>
-    <!-- Modal -->
-  
-        <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="cartModalLabel">Item Added to Cart</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                The item has been added to your cart.
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Continue Shopping</button>
-                <button type="button" class="btn btn-primary">Go to Cart</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </template>
+  </div>
+</template>
 
-    <script>
+<script>
 import axios from 'axios';
 
 export default {
@@ -63,9 +44,9 @@ export default {
     },
   },
   methods: {
-    openModal(listing) {
+    addToCart(listing) {
       this.$store.dispatch('addToCart', listing);
-      $('#cartModal').modal('show'); // Show the modal
+      window.alert('Item added to cart!');
     },
     async fetchListings() {
       try {
@@ -77,40 +58,40 @@ export default {
         console.error(error);
         this.listings = [];
       }
-    },
+    }
   },
-  mounted() {
+  created() {
     this.fetchListings();
   },
 };
 </script>
 
-   
+
+<style scoped>
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f7f7f7;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
 
 
-    <style scoped>
-      body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #f7f7f7;
-      }
+.header {
+  background-color: #ffffff;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 
-      .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 20px;
-      }
 
-      .header {
-        background-color: #ffffff;
-        padding: 20px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      }
-
-      .listing-image {
-        width: 100%;
-        height: 200px;
-        object-fit: cover;
-      }
-    </style>
+.listing-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+</style>

@@ -18,6 +18,9 @@ export default createStore({
                 state.cart.splice(index, 1);
             }
         },
+        setUser(state, user) {
+            state.user = user
+        },
     },
     actions: {
         addToCart({ commit }, item) {
