@@ -22,6 +22,7 @@
             <p class="card-text">{{ listing.description }}</p>
             <p class="card-text">{{ listing.price }}€ per night</p>
           </div>
+          
           <div class="card-footer">
             <small class="text-muted">For more information click on the picture.</small>
             <br>

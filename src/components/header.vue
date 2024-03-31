@@ -43,7 +43,6 @@ const logout = () => {
                 Bonjour, {{ user.username }}
               </div>
               <div v-else class="navbar-text">
-
                 Vous n'êtes pas connecté
               </div>
             </ul>
@@ -57,6 +56,28 @@ const logout = () => {
     </header>
   </div>
 </template>
+<script>
+export default {
+  data() {
+    return {
+      user: null,
+    };
+  },
+  methods: {
+    login() {
+      // Simule une requête de connexion
+      this.$http.post('/api/login', this.loginForm)
+        .then(response => {
+          // Met à jour user lorsque l'utilisateur se connecte
+          this.user = response.data;
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    },
+  },
+};
+</script>
 
 <style scoped>
 .search-bar {
@@ -132,21 +153,28 @@ nav .btn:hover {
 .logo:active {
   transform: scale(0.9); 
 }
-.nav-link {
+.nav-link,.navbar-brand {
   
   margin: 0 10px;
   transition: transform 0.3s ease-in-out;
   
 }
 
-.nav-link:hover {
+.nav-link:hover,.navbar-brand:hover {
   text-decoration: none;
   transform: scale(1.1);
  
 }
 
-.nav-link:active {
+.nav-link:active,.navbar-brand:active {
   transform: scale(0.9);
 }
+.button:hover {
+      transform: scale(1.1);
+    }
+  
+.button:active {
+      transform: scale(0.9);
+    }
   
 </style>
