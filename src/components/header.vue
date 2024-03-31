@@ -39,6 +39,12 @@ const logout = () => {
               <li class="nav-item">
                 <RouterLink class="nav-link" to="/cart">Cart</RouterLink>
               </li>
+              <li class="nav-item" v-if="store.state.isLoggedIn">
+                <RouterLink class="nav-link" to="/addHousing">Add your house</RouterLink>
+              </li>
+              <li class="nav-item">
+                <RouterLink class="nav-link" v-if="!store.state.isLoggedIn" to="/about">About</RouterLink>
+              </li>
               <div v-if="user" class="navbar-text">
                 Bonjour, {{ user.username }}
               </div>

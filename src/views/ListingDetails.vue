@@ -56,7 +56,7 @@
           </div>
           <p class="price-box">Total price: {{ numberOfDays * listing.price }}&euro;</p>
         </div>
-
+        <h4>Where you’ll be</h4>
         <div style="width: 100%; height: 400px;">
           <iframe :src="'https://www.google.com/maps?q=' + encodeURIComponent(listing.location) + '&output=embed'"
             width="100%" height="100%" frameborder="0" style="border:0" allowfullscreen>
