@@ -19,19 +19,49 @@
       </div>
       <div class="card-body">
         <h5 class="card-title">{{ listing.title }}</h5>
-        <p class="card-text">{{ listing.description }}</p>
-        <p class="card-text highlight"> 💳 Price : {{ listing.price }}&euro; per day</p>
-        <p class="card-text highlight"> 📍Location : {{ listing.location }}</p>
-        <p class="card-text highlight"> 🛏️ Rooms : {{ listing.rooms }}</p>
-      </div>
-      <div style="width: 100%; height: 400px;">
-        <iframe :src="'https://www.google.com/maps?q=' + encodeURIComponent(listing.location) + '&output=embed'"
-          width="100%" height="100%" frameborder="0" style="border:0" allowfullscreen>
-        </iframe>
+        <b-row>
+          <b-col md="6">
+            <div class="info">
+              <p class="card-text">{{ listing.description }}</p>
+              <p class="card-text highlight"> 💳 Price : {{ listing.price }}&euro; per day</p>
+              <p class="card-text highlight"> 📍Location : {{ listing.location }}</p>
+              <p class="card-text highlight"> 🛏️ Rooms : {{ listing.rooms }}</p>
+              <p>Number of days: {{ numberOfDays }}</p>
+              <p>Total price: {{ numberOfDays * listing.price }}&euro;</p>
+            </div>
+          </b-col>
+          <b-col md="6">
+            <div>
+              <b-row>
+                <b-col md="auto">
+                  <date-picker v-model="startDate" @input="onContext"></date-picker>
+                </b-col>
+                <b-col>
+                  <p>Check-in date: <b>'{{ startDate }}'</b></p>
+                  <pre class="small">{{ context }}</pre>
+                </b-col>
+              </b-row>
+
+              <b-row>
+                <b-col md="auto">
+                  <date-picker v-model="endDate" @input="onContext"></date-picker>
+                </b-col>
+                <b-col>
+                  <p>Check-out date: <b>'{{ endDate }}'</b></p>
+                  <pre class="small">{{ context }}</pre>
+                </b-col>
+              </b-row>
+            </div>
+          </b-col>
+        </b-row>
+        <div style="width: 100%; height: 400px;">
+          <iframe :src="'https://www.google.com/maps?q=' + encodeURIComponent(listing.location) + '&output=embed'"
+            width="100%" height="100%" frameborder="0" style="border:0" allowfullscreen>
+          </iframe>
+        </div>
       </div>
     </div>
   </div>
-
 </template>
 
 
@@ -44,7 +74,27 @@ export default {
   name: 'ListingDetails',
   data() {
     return {
-      listing: {}
+      listing: {},
+      startDate: null,
+      endDate: null,
+      context: null
+    }
+  },
+  methods: {
+    onContext(date) {
+      this.context = date
+    }
+  },
+  computed: {
+    numberOfDays() {
+      if (this.startDate && this.endDate) {
+        const start = new Date(this.startDate);
+        const end = new Date(this.endDate);
+        const diffInMilliseconds = end - start;
+        const diffInDays = diffInMilliseconds / (1000 * 60 * 60 * 24);
+        return Math.round(diffInDays) + 1;
+      }
+      return 0;
     }
   },
   async created() {
@@ -63,6 +113,7 @@ export default {
 }
 </script>
 <style scoped>
+
 .container {
   background-color: #f8f9fa;
   padding: 20px;
@@ -71,6 +122,21 @@ export default {
 
 .card-title {
   font-size: 1.5em;
+}
+/* Change the background color of the date picker */
+.vue3-datepicker__calendar {
+  background-color: #f8f9fa;
+}
+
+/* Change the color of the selected date */
+.vue3-datepicker__day--selected {
+  background-color: #007bff;
+  color: white;
+}
+
+/* Change the color of the current date */
+.vue3-datepicker__day--today {
+  color: #dc3545;
 }
 /*.highlight {
   font-weight: bold;
