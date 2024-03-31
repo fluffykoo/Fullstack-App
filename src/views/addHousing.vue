@@ -37,12 +37,11 @@
                         <input id="rooms" v-model="rooms" type="number" required class="form-control"
                             placeholder="How Many rooms are there ?">
                     </div>
-                    <button type="submit" class="btn button">Add Housing</button>
+                    <button type="submit" class="btn btn-primary">Add Housing</button>
                 </form>
             </div>
             <div v-if="message" class="alert" :class="{ 'alert-success': isSuccess, 'alert-danger': !isSuccess }">{{
-                message
-                }}</div>
+                message }}</div>
         </div>
     </div>
 </template>
@@ -56,7 +55,6 @@
 }
 
 .add-housing {
-    max-width: 500px;
     margin: 0 auto;
     padding: 2rem;
     border: 1px solid var(--color-border);
@@ -64,7 +62,7 @@
     background-color: #f9f9f9;
 }
 
-.add-housing.container {
+.add-housing .form-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -99,6 +97,7 @@
     cursor: pointer;
     width: 100%;
 }
+
 
 .form-group {
     width: 100%;

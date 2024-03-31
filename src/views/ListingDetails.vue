@@ -54,6 +54,7 @@
               </div>
             </div>
           </div>
+          <button @click="bookListing" class="btn btn-primary">Réserver</button>
           <p class="price-box">Total price: {{ numberOfDays * listing.price }}&euro;</p>
         </div>
         <h4>Where you’ll be</h4>
@@ -68,7 +69,7 @@
 </template>
 
 
-<script>
+<<script>
 import axios from 'axios';
 import $ from 'jquery';
 import 'bootstrap';
@@ -85,6 +86,18 @@ export default {
   methods: {
     onContext(date) {
       this.context = date
+    },
+    async bookListing() { // Ajoutez le mot-clé async ici
+      try {
+        const response = await axios.post('http://localhost:3000/bookings', {
+          listingId: this.listing.id,
+          startDate: this.startDate,
+          endDate: this.endDate
+        });
+        console.log(response.data);
+      } catch (error) {
+        console.error(error);
+      }
     }
   },
   computed: {
