@@ -95,7 +95,29 @@ router.post('/houses', async (ctx) => {
         ctx.body = { message: err.message };
     }
 });
+import Reservation from './models/Reservation.js';
 
+router.post('/bookings', async (ctx) => {
+    const { userId, listingId, startDate, endDate } = ctx.request.body;
+
+    try {
+        // Créer une nouvelle réservation
+        const reservation = new Reservation({
+            userId,
+            listingId,
+            startDate: new Date(startDate),
+            endDate: new Date(endDate)
+        });
+
+        // Sauvegarder la réservation dans la base de données
+        await reservation.save();
+
+        ctx.body = { message: 'Booking created successfully' };
+    } catch (err) {
+        ctx.status = 400;
+        ctx.body = { message: err.message };
+    }
+});
 
 app.use(cors());
 app.use(bodyParser());

@@ -1,36 +1,23 @@
 <template>
-  <div class="app">
-    <header>
-      <h1>About SleepHere</h1>
-      <p>Your Home Away from Home</p>
-    </header>
-    <main>
-      <section class="about-section">
-        <h2>Our Story</h2>
-        <p>SleepHere was founded in 2010 with a simple mission: to connect travelers with unique, comfortable, and
-          affordable accommodations around the world. Whether you're looking for a cozy mountain cabin, a seaside villa,
-          or a trendy city apartment, we've got you covered.</p>
-      </section>
-      <section class="about-section">
-        <h2>Our Team</h2>
-        <p>Get to know the passionate team behind SleepHere:</p>
-        <ul>
-          <li>Adrrien CHANDRAKUMAR - CO-Founder</li>
-          <li>Oumou CAMARA - CO-Founder</li>
-
-        </ul>
-      </section>
-      <section class="about-section">
-        <h2>Our Values</h2>
-        <p>At SleepHere, we believe in:</p>
-        <ul>
-          <li>Creating memorable experiences for our hosts</li>
-          <li>Supporting local communities</li>
-          <li>Ensuring safety for all</li>
-          <li>Continuous innovation and improvement</li>
-        </ul>
-      </section>
-    </main>
+  <div class="home-page">
+    <nav class="navbar">
+      <div class="logo">SleepHere</div>
+      <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Gallery</a></li>
+        <li><a href="#">About us</a></li>
+      </ul>
+    </nav>
+    <div class="hero-section">
+      <h1 class="headline">Live in Luxury</h1>
+      <p class="subtext">Explore our upscale apartments for rent</p>
+      <button class="cta-button">Learn More</button>
+    </div>
+    <div class="background-image">
+      <!-- Replace with an elegant interior apartment image -->
+      <img src="https://a0.muscache.com/im/pictures/47cb07f8-1aaa-472e-bb89-b08aef087c65.jpg?im_w=720"
+        alt="Luxury Apartment Interior" />
+    </div>
     <footer>
       <p>© 2023 SleepHere. All rights reserved.</p>
     </footer>
@@ -39,65 +26,76 @@
 
 <script>
 export default {
-  name: 'AboutPage',
+  name: 'HomePage',
 }
 </script>
 
-
-
 <style scoped>
-.app {
-  display: block;
-  flex-direction: column;
-  height: 100vh;
-  padding-top: 2%;
-  
-}
-body {
+/* Add your custom CSS styles here */
+.home-page {
   font-family: Arial, sans-serif;
-  line-height: 1.6;
 }
 
-header {
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding: 20px;
-  text-align: center;
-  background: #f4f4f4;
+  background-color: #ffffff;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+}
+
+.nav-links li {
+  margin-right: 20px;
+}
+
+.nav-links a {
+  text-decoration: none;
   color: #333;
-  border-bottom: #bbb 1px solid;
 }
 
-header h1 {
-  margin: 0;
-  padding: 0;
+.hero-section {
+  text-align: center;
+  padding: 100px 0;
+  background-color: #f9f9f9;
 }
 
-main {
-  padding: 20px;
-}
-
-.about-section {
+.headline {
+  font-size: 36px;
+  font-weight: bold;
   margin-bottom: 20px;
 }
 
-.about-section h2 {
-  font-size: 1.5em;
-  margin-bottom: 10px;
+.subtext {
+  font-size: 18px;
+  color: #777;
 }
 
-.about-section p,
-.about-section ul {
-  text-align: justify;
+.cta-button {
+  background-color: #ff6600;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-.about-section ul {
-  padding-left: 20px;
+.cta-button:hover {
+  background-color: #e65c00;
 }
 
-footer {
-  text-align: center;
-  padding: 20px;
-  background: #f4f4f4;
-  border-top: #bbb 1px solid;
-  color: #333;
+.background-image img {
+  width: 100%;
+  height: auto;
 }
 </style>

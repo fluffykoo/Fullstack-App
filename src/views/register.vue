@@ -50,7 +50,7 @@ const isSuccess = ref(false)
 
 const register = async () => {
   try {
-    const response = await axios.post(' https://3334-209-206-8-34.ngrok-free.app/register', {
+  const response = await axios.post('http://localhost:3000/register', {
       username: username.value,
       password: password.value,
       name: name.value,
@@ -66,6 +66,8 @@ const register = async () => {
     }
   } catch (err) {
     console.error(err)
+    message.value = err.message;
+    isSuccess.value = false;
   }
 }
 </script>

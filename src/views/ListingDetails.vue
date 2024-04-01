@@ -54,8 +54,8 @@
               </div>
             </div>
           </div>
-          <button @click="bookListing" class="btn btn-primary">Réserver</button>
-          <p class="price-box">Total price: {{ numberOfDays * listing.price }}&euro;</p>
+          <p class="price-box">Total price: {{ numberOfDays * listing.price }}&euro; <button class="btn btn-primary"
+              @click="reserve">Réserver</button></p>
         </div>
         <h4>Where you’ll be</h4>
         <div style="width: 100%; height: 400px;">
@@ -69,7 +69,7 @@
 </template>
 
 
-<<script>
+<script>
 import axios from 'axios';
 import $ from 'jquery';
 import 'bootstrap';
@@ -86,18 +86,6 @@ export default {
   methods: {
     onContext(date) {
       this.context = date
-    },
-    async bookListing() { // Ajoutez le mot-clé async ici
-      try {
-        const response = await axios.post('http://localhost:3000/bookings', {
-          listingId: this.listing.id,
-          startDate: this.startDate,
-          endDate: this.endDate
-        });
-        console.log(response.data);
-      } catch (error) {
-        console.error(error);
-      }
     }
   },
   computed: {
@@ -116,6 +104,20 @@ export default {
     try {
       const response = await axios.get(`http://localhost:3000/houses/${this.$route.params.id}`);
       this.listing = response.data;
+    } catch (error) {
+      console.error(error);
+    }
+  },
+  async reserve() {
+    try {
+      const response = await axios.post('http://localhost:3000/bookings', {
+        username: this.$store.state.user.username, // Accéder au username à partir du store Vuex
+        listingId: this.listing.id,
+        location: this.listing.location,
+        startDate: this.startDate,
+        endDate: this.endDate
+      });
+      console.log(response.data);
     } catch (error) {
       console.error(error);
     }
