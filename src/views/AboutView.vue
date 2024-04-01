@@ -1,26 +1,10 @@
 <template>
-  <div class="home-page">
-    <nav class="navbar">
-      <div class="logo">SleepHere</div>
-      <ul class="nav-links">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Gallery</a></li>
-        <li><a href="#">About us</a></li>
-      </ul>
-    </nav>
-    <div class="hero-section">
-      <h1 class="headline">Live in Luxury</h1>
-      <p class="subtext">Explore our upscale apartments for rent</p>
-      <button class="cta-button">Learn More</button>
+  <div class="background-image">
+    <div class="centered-div">
+      <h1 class="title">SLEEPHERE ✨🛏️</h1>
+      <h2 class="subtitle">Experience Local Life in Our Charming Accommodation</h2>
+      <button class="centered-button">SHOP</button>
     </div>
-    <div class="background-image">
-      <!-- Replace with an elegant interior apartment image -->
-      <img src="https://a0.muscache.com/im/pictures/47cb07f8-1aaa-472e-bb89-b08aef087c65.jpg?im_w=720"
-        alt="Luxury Apartment Interior" />
-    </div>
-    <footer>
-      <p>© 2023 SleepHere. All rights reserved.</p>
-    </footer>
   </div>
 </template>
 
@@ -31,71 +15,63 @@ export default {
 </script>
 
 <style scoped>
-/* Add your custom CSS styles here */
-.home-page {
-  font-family: Arial, sans-serif;
-}
-
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px;
-  background-color: #ffffff;
-}
-
-.logo {
-  font-size: 24px;
-  font-weight: bold;
-}
-
-.nav-links {
-  list-style: none;
-  display: flex;
-}
-
-.nav-links li {
-  margin-right: 20px;
-}
-
-.nav-links a {
-  text-decoration: none;
-  color: #333;
-}
-
-.hero-section {
-  text-align: center;
-  padding: 100px 0;
-  background-color: #f9f9f9;
-}
-
-.headline {
-  font-size: 36px;
-  font-weight: bold;
-  margin-bottom: 20px;
-}
-
-.subtext {
-  font-size: 18px;
-  color: #777;
-}
-
-.cta-button {
-  background-color: #ff6600;
-  color: #ffffff;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.cta-button:hover {
-  background-color: #e65c00;
-}
-
-.background-image img {
+.background-image {
+  background-image: url('/src/assets/Green.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   width: 100%;
-  height: auto;
+  height: 100vh;
+}
+
+.centered-button {
+  position: absolute;
+  /* Changé de fixed à absolute pour positionner le bouton par rapport à la div */
+  top: 80%;
+  /* Ajustez ces valeurs pour positionner le bouton à l'endroit souhaité dans la div */
+  left: 20%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 100px;
+  font-size: 20px;
+  border-radius: 50px / 25px;
+}
+
+.centered-div {
+  position: fixed;
+  top: 40%;
+  /* Ajustez cette valeur pour déplacer la div plus bas sur la page */
+  left: 40%;
+  right: 60%;
+
+  transform: translate(-50%, -50%);
+  width: 65%;
+  height: 70%;
+  background-color: rgba(255, 255, 255, 0.7);
+  
+  border-radius: 20px;
+  margin-top: 140px;
+  /* Augmentez cette valeur pour ajouter plus d'espace entre le header et la div */
+}
+.title,
+.subtitle {
+  position: absolute;
+  left: 20px;
+  width: calc(100% - 40px);
+  font-family: 'Hammersmith One', sans-serif;
+  font-weight: bold;
+  /* Rend le texte en gras */
+  color: white;
+  /* Rend le texte en blanc */
+}
+
+.title {
+  top: 20%;
+  font-size: 2em;
+}
+
+.subtitle {
+  top: 30%;
+  font-size: 1.5em;
 }
 </style>

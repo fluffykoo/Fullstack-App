@@ -15,14 +15,13 @@
       <div class="col" v-for="listing in filteredListings" :key="listing._id">
         <div class="card h-100">
           <router-link :to="`/listing/${listing._id}`">
-            <img :src="listing.image" class="card-img-top img-fluid listing-image" :alt="listing.title" />
+            <img :src="listing.images[0]" class="card-img-top img-fluid listing-image" :alt="listing.title" />
           </router-link>
           <div class="card-body">
             <h5 class="card-title">{{ listing.title }}</h5>
             <p class="card-text">{{ listing.description }}</p>
             <p class="card-text">{{ listing.price }}€ per night</p>
           </div>
-          
           <div class="card-footer">
             <small class="text-muted">For more information click on the picture.</small>
             <br>
@@ -47,6 +46,10 @@ export default {
       searchRooms: "",
       listings: [],
     };
+  },
+  async created() {
+    const response = await axios.get('http://localhost:3000/houses');
+    this.houses = response.data;
   },
   computed: {
     filteredListings() {
