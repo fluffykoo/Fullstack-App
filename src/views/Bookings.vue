@@ -20,7 +20,7 @@ export default {
     },
     async created() {
         try {
-            // Remplacez 'userId' par l'ID de l'utilisateur actuellement connecté
+            
             const userId = 'userId';
             const response = await axios.get(`http://localhost:3000/bookings?userId=${userId}`);
             this.bookings = response.data;
